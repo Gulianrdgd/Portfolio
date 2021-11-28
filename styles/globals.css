@@ -1,3 +1,12 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+@tailwind *;
+
+
 html,
 body {
   padding: 0;
@@ -13,4 +22,27 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+
+html{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar {
+  display: none;
+}
+
+.welcomeDiv {
+  clip-path: polygon(0 0, 100% 0%, 85% 100%, 0% 100%);
+}
+
+@media only screen and (max-width: 640px) {
+  .welcomeDiv {
+    clip-path: none !important;
+  }
+}
+.fade-in {
+  transition: opacity 0.1s linear;
 }
