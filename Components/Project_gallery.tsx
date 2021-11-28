@@ -15,8 +15,8 @@ function Create_gallery(): JSX.Element {
 
 function Project_gallery(): JSX.Element {
     return (
-        <div className={"flex flex-col bg-white justify-center py-10 mx-32"}>
-            <h1 className={"text-4xl text-black text-center justify-center mb-10 font-semiBold"}>Recent projects</h1>
+        <div className={"flex flex-col bg-white justify-center py-10 md:mx-32"}>
+            <h1 id={"scroll-projects"} className={"text-5xl text-black text-center justify-center mb-10 font-semiBold"}>Projects</h1>
             <div className={"grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 mx-10"}>
                 {
                     <Create_gallery/>

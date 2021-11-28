@@ -13,6 +13,24 @@ window.onload = function () {
     })
 
     setUpAnimation();
+    texts.forEach(function(t) {
+            if (t.nav !== "nav-logo") {
+                let target = document.getElementById("scroll-" + t.nav.substring(4));
+                document.getElementById(t.nav).onclick = (ev) => {
+                    window.scrollTo({
+                        top: target.getBoundingClientRect().top + window.pageYOffset - 150,
+                        behavior: 'smooth'
+                    })
+                }
+                document.getElementById(t.welcome).onclick = (ev) => {
+                    window.scrollTo({
+                        top: target.getBoundingClientRect().top + window.pageYOffset -150,
+                        behavior: 'smooth'
+                    })
+                }
+            }
+        }
+    )
 }
 
 function setUpAnimation(){
@@ -69,3 +87,5 @@ window.onresize = function(){
     tl.kill();
     setUpAnimation();
 };
+
+

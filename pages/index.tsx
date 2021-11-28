@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Vdhorst | dev</title>
+        <title>Vdhorst | WIP</title>
         <link rel="icon" href="/favicon.ico" />
         <meta charSet="utf-8"/>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
@@ -64,8 +64,8 @@ const Home: NextPage = () => {
         </div>
 
 
-        <div className="h-2/3 bg-white z-0 flex w-screen md:px-32 md:py-10 flex-col">
-          <h1 className="text-5xl text-black text-center justify-center mb-10 font-semiBold">About</h1>
+        <div className="h-2/3 bg-white z-0 flex w-screen md:px-32 md:pt-10 flex-col">
+          <h1 id={"scroll-about"} className="text-5xl text-black text-center mt-10 md:mt-0 justify-center mb-10 font-semiBold">About</h1>
           <div className="flex md:flex-row flex-col justify-center mx-20">
             <div className="justify-center md:justify-end w-full md:w-1/2">
               {/* eslint-disable-next-line react/no-unescaped-entities */}
@@ -87,6 +87,9 @@ const Home: NextPage = () => {
           </div>
         </div>
         <Project_gallery/>
+        <h1 id={"scroll-pictures"} className="text-5xl text-black text-center mt-10 md:mt-0 justify-center mb-10 font-semiBold">Pictures</h1>
+        <h1 id={"scroll-contact"} className="text-5xl text-black text-center mt-10 md:mt-0 justify-center mb-10 font-semiBold">Contact</h1>
+
       </main>
     </div>
   )

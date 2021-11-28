@@ -16,7 +16,7 @@ function Project(prop: Props): JSX.Element {
             <div className={"rounded-md h-1/2"}>
                 <img className={"object-cover rounded-t-md h-56 "} src={image}/>
             </div>
-            <div className={"p-10 text-center"}>
+            <div className={"p-10 text-center h-full"}>
                 <Icon fontSize={"large"}>{prop.project.icon}</Icon>
                 <h2 className={"text-xl text-black font-semiBold"}>{prop.project.project_name}</h2>
                 <p className={"text-lg text-black text-left mt-3"}>{prop.project.project_description}</p>
