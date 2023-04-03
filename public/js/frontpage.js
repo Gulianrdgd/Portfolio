@@ -1,9 +1,12 @@
 const texts = [];
 
 let hide = true;
-var tl = gsap.timeline({paused:true});
+let tl = gsap.timeline({paused: true});
 
+console.log("TETSTS")
 window.onload = function () {
+
+    console.log("Loaded");
     const init = [{welcome: "welcome-about", nav: "nav-about"}, {welcome: "welcome-projects", nav: "nav-projects"},
         {welcome: "welcome-pictures", nav: "nav-pictures"}, {welcome: "welcome-contact", nav: "nav-contact"}
         , {welcome: "welcome-logo", nav: "nav-logo"}];
@@ -36,7 +39,6 @@ window.onload = function () {
 function setUpAnimation(){
     tl = gsap.timeline({paused:true});
     texts.forEach(function (t) {
-
         let nav = document.getElementById(t.nav);
         let welcome = document.getElementById(t.welcome);
 
@@ -71,7 +73,9 @@ window.onscroll = function(){
     let winHeight = window.innerHeight;
 
     if( scrollTop >= 0){
+
         tl.progress( scrollTop / ( winHeight* 0.5 ) );
+
         if(scrollTop <= winHeight*0.5 && !hide){
             texts.forEach(function (t) {
                 document.getElementById(t.nav).className = document.getElementById(t.nav).className.replace("opacity-0", " opacity-100");

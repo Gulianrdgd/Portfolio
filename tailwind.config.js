@@ -1,10 +1,8 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
-  purge: [
+  content: [
     './pages/api/*.ts',
     './pages/*.tsx',
-
+    './Components/*.tsx',
   ],
   darkMode: false,
   theme: {
@@ -25,6 +23,7 @@ module.exports = {
       },
       colors: {
         primary: "#0085FF",
+        'primary-active': '#0066CC',
       },
       zIndex: {
         '1':'-1'
