@@ -5,14 +5,14 @@ let tl = gsap.timeline({paused: true});
 
 window.onload = function () {
     const init = [{welcome: "welcome-about", nav: "nav-about"}, {welcome: "welcome-projects", nav: "nav-projects"},
-        {welcome: "welcome-pictures", nav: "nav-pictures"}, {welcome: "welcome-contact", nav: "nav-contact"}
+        {welcome: "welcome-cv", nav: "nav-cv"}, {welcome: "welcome-contact", nav: "nav-contact"}
         , {welcome: "welcome-logo", nav: "nav-logo"}];
 
     init.forEach(function (t) {
         texts.push(t);
     })
 
-    setUpAnimation();
+    setTimeout(setUpAnimation, 300);
     texts.forEach(function(t) {
             if (t.nav !== "nav-logo") {
                 let target = document.getElementById("scroll-" + t.nav.substring(4));
@@ -43,6 +43,7 @@ function setUpAnimation(){
         let scale = 0;
         // Special scale and y for logo
         if (t.nav === "nav-logo") {
+            // If the window is below tailwind:md we have a different scale for the logo
             scale = window.innerWidth < 768 ? 1 / (200 / (4 * relativeSize)) : 1 / (200 / (7 * relativeSize))
         }else{
             scale = (1 / (2.25 / 1.5))

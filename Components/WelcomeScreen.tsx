@@ -30,8 +30,8 @@ const WelcomeScreen: FunctionComponent<Props> = (_) => {
                               <h3 id="welcome-projects"
                                   className="text-4xl text-white inline-block font-semiBold mt-10 relative opacity-100 text-center md:text-left">PROJECTS</h3>
                               <br/>
-                              <h3 id="welcome-pictures"
-                                  className="text-4xl text-white inline-block font-semiBold mt-10 relative opacity-100 text-center md:text-left">PICTURES</h3>
+                              <h3 id="welcome-cv"
+                                  className="text-4xl text-white inline-block font-semiBold mt-10 relative opacity-100 text-center md:text-left">CV</h3>
                               <br/>
                               <h3 id="welcome-contact"
                                   className="text-4xl text-white inline-block font-semiBold mt-10 relative opacity-100 text-center md:text-left">CONTACT</h3>

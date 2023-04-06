@@ -1,13 +1,16 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import Project_gallery from "../Components/Project_gallery";
-import Script from 'next/script';
 import React from "react";
 import NavBar from "../Components/NavBar";
 import WelcomeScreen from "../Components/WelcomeScreen";
+import dynamic from "next/dynamic";
+
+const CV = dynamic(() => import("../Components/CV"), {
+    ssr: false
+});
 
 const Home: NextPage = () => {
-
     return (
         <>
         <Head>
@@ -52,12 +55,15 @@ const Home: NextPage = () => {
                 </div>
 
                 <Project_gallery/>
-                <h1 id={"scroll-pictures"}
-                    className="text-5xl text-black text-center mt-10 md:mt-0 justify-center mb-10 font-semiBold">Pictures</h1>
+                <div className={"mb-10 mt-10 md:mt-0 "}>
+                <h1 id={"scroll-cv"}
+                    className="text-5xl text-black text-center justify-center mb-10 font-semiBold">CV</h1>
+                <CV />
+                </div>
                 <h1 id={"scroll-contact"}
                     className="text-5xl text-black text-center mt-10 md:mt-0 justify-center mb-10 font-semiBold">Contact</h1>
                 <div className={"flex container justify-center w-screen"}>
-                    <p className={"text-xl font-semiBold"}>Email me on: Julian@vdhorst.dev</p>
+                    <p className={"text-xl font-semiBold"}>Coming soon...</p>
                 </div>
             </main>
         </> )

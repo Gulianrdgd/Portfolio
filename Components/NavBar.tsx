@@ -17,8 +17,8 @@ const NavBar: FunctionComponent<Props> = (_) => {
           <img id="nav-logo" className="absolute z-10 w-16 h-16 md:w-28 md:h-28 top-0 opacity-0"
                src="/images/logo.png" alt={"vdhorst logo"}/>
         </div>
-        <h1 id="nav-pictures"
-            className=" md:text-2xl  text-white font-semiBold text-center opacity-0">PICTURES</h1>
+        <h1 id="nav-cv"
+            className=" md:text-2xl  text-white font-semiBold text-center opacity-0">CV</h1>
         <h1 id="nav-contact"
             className=" md:text-2xl  text-white font-semiBold text-center opacity-0">CONTACT</h1>
       </div>
