@@ -4,7 +4,6 @@ module.exports = {
     './pages/*.tsx',
     './Components/*.tsx',
   ],
-  darkMode: false,
   theme: {
     extend: {
       spacing: {

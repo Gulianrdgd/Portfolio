@@ -44,5 +44,6 @@ html::-webkit-scrollbar {
   }
 }
 .fade-in {
-  transition: opacity 0.1s linear;
+  transition: opacity 0.2s linear;
+  transition-timing-function: cubic-bezier(0.25,0.1,0.25,1);
 }

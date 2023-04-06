@@ -22,8 +22,8 @@ function Project(prop: Props): JSX.Element {
                 <h2 className={"text-xl text-black font-semiBold"}>{prop.project.project_name}</h2>
                 </div>
                 <p className={"text-lg text-black text-left my-3"}>{prop.project.project_description}</p>
-                <button className={"bg-primary rounded-full mt-5 md:w-1/2 lg:w-1/3 self-center h-10 hover:bg-primary-active"}>
-                    <a className={"text-center text-white m-5 font-semiBold"} href={prop.project.project_link}>Check it out</a>
+                <button className={"bg-primary rounded-full mt-5 lg:w-1/2 xl:w-1/3 self-center h-10 hover:bg-primary-active"}>
+                    <a className={"text-center text-white font-semiBold"} href={prop.project.project_link}>Check it out</a>
                 </button>
             </div>
         </div>

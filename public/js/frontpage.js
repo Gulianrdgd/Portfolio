@@ -3,10 +3,7 @@ const texts = [];
 let hide = true;
 let tl = gsap.timeline({paused: true});
 
-console.log("TETSTS")
 window.onload = function () {
-
-    console.log("Loaded");
     const init = [{welcome: "welcome-about", nav: "nav-about"}, {welcome: "welcome-projects", nav: "nav-projects"},
         {welcome: "welcome-pictures", nav: "nav-pictures"}, {welcome: "welcome-contact", nav: "nav-contact"}
         , {welcome: "welcome-logo", nav: "nav-logo"}];
@@ -19,13 +16,13 @@ window.onload = function () {
     texts.forEach(function(t) {
             if (t.nav !== "nav-logo") {
                 let target = document.getElementById("scroll-" + t.nav.substring(4));
-                document.getElementById(t.nav).onclick = (ev) => {
+                document.getElementById(t.nav).onclick = (_) => {
                     window.scrollTo({
                         top: target.getBoundingClientRect().top + window.pageYOffset - 150,
                         behavior: 'smooth'
                     })
                 }
-                document.getElementById(t.welcome).onclick = (ev) => {
+                document.getElementById(t.welcome).onclick = (_) => {
                     window.scrollTo({
                         top: target.getBoundingClientRect().top + window.pageYOffset -150,
                         behavior: 'smooth'
@@ -41,10 +38,16 @@ function setUpAnimation(){
     texts.forEach(function (t) {
         let nav = document.getElementById(t.nav);
         let welcome = document.getElementById(t.welcome);
+        let relativeSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
 
+        let scale = 0;
         // Special scale and y for logo
-        let scale = (t.nav === "nav-logo") ? 1 / (200 / (7 * parseFloat(getComputedStyle(document.documentElement).fontSize))) : (1 / (2.25 / 1.5));
-        let y = window.innerHeight/2 - (welcome.offsetTop + welcome.getBoundingClientRect().height / 2) - ((t.nav === "nav-logo") ? 0 :(2.5 * parseFloat(getComputedStyle(document.documentElement).fontSize)))
+        if (t.nav === "nav-logo") {
+            scale = window.innerWidth < 768 ? 1 / (200 / (4 * relativeSize)) : 1 / (200 / (7 * relativeSize))
+        }else{
+            scale = (1 / (2.25 / 1.5))
+        }
+        let y = window.innerHeight/2 - (welcome.offsetTop + welcome.getBoundingClientRect().height / 2) - ((t.nav === "nav-logo") ? 0 : (2.5 * relativeSize))
 
         tl.to("#" + t.welcome,
             {
@@ -53,6 +56,7 @@ function setUpAnimation(){
             }, 0
         );
     })
+
 
 }
 
@@ -67,12 +71,25 @@ function showNavBar(name) {
 
     hide = false;
 }
+let resizeTimer = null;
+function resizeDone(){
+    tl.progress(0);
+    tl.kill();
+    tl.clear();
+    setUpAnimation();
+    resizeTimer = null;
+}
+
+window.onresize = function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resizeDone, 300);
+};
 
 window.onscroll = function(){
     let scrollTop = window.scrollY;
     let winHeight = window.innerHeight;
 
-    if( scrollTop >= 0){
+    if( scrollTop >= 0 && resizeTimer === null){
 
         tl.progress( scrollTop / ( winHeight* 0.5 ) );
 
@@ -87,9 +104,7 @@ window.onscroll = function(){
     }
 
 }
-window.onresize = function(){
-    tl.kill();
-    setUpAnimation();
-};
+
+
 
 
