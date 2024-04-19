@@ -12,9 +12,9 @@ const CV = dynamic(() => import("../Components/CV"), {
 
 const Home: NextPage = () => {
     return (
-        <>
+        <>p
         <Head>
-            <title>Vdhorst | WIP</title>
+            <title>Vdhorst | proppP</title>
             <link rel="icon" href="/favicon.ico"/>
             <meta charSet="utf-8"/>
             <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
@@ -56,14 +56,14 @@ const Home: NextPage = () => {
 
                 <Project_gallery/>
                 <div className={"mb-10 mt-10 md:mt-0 "}>
-                <h1 id={"scroll-cv"}
-                    className="text-5xl text-black text-center justify-center mb-10 font-semiBold">CV</h1>
-                <CV />
+                    <h1 id={"scroll-cv"}
+                        className="text-5xl text-black text-center justify-center mb-10 font-semiBold">CV</h1>
+                    <CV />
                 </div>
                 <h1 id={"scroll-contact"}
                     className="text-5xl text-black text-center mt-10 md:mt-0 justify-center mb-10 font-semiBold">Contact</h1>
-                <div className={"flex container justify-center w-screen"}>
-                    <p className={"text-xl font-semiBold"}>Coming soon...</p>
+                <div className={"flex justify-center h-64"}>
+                    <p className={"text-xl font-semiBold text-center self-center"}>Coming soon...</p>
                 </div>
             </main>
         </> )

@@ -12,6 +12,15 @@ export let projects: project[] = [
         project_image_link: "portfolio.png"
     },
     {
+      // Topix
+        icon: "podcasts",
+        project_name: "Topix",
+        project_description: "Topix is a project that we made for a course. The project was an app that uses AI to genereate" +
+            " a personal morning podcast. The whole generation is automated an we used a lot of different technologies to make this work.",
+        project_link: "https://github.com/Crazy4Topix/Topix",
+        project_image_link: "topix.png"
+    },
+    {
         // Counterexit
         icon: "soap",
         project_name: "Dishwasher website",
@@ -51,16 +60,6 @@ export let projects: project[] = [
                              " and for the livestream. This was made with a huge time crunch so security wise it is not great",
         project_link: "https://github.com/Gulianrdgd/de-slimste-mens",
         project_image_link: "slimste.png"
-    },
-    {
-        // Centurion
-        icon: "music_note",
-        project_name: "Centurion website",
-        project_description: "This is my first web app project. It's an online drinking game called centurion." +
-            "                This web app includes and chat and reconnecting capabilities." +
-            "                The formatting could use some work but I decided it was fine for now.",
-        project_link: "https://github.com/Gulianrdgd/Centurion-drinking-game",
-        project_image_link: "centurion.png"
     },
 
 ]
