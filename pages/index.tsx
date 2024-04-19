@@ -14,7 +14,7 @@ const Home: NextPage = () => {
     return (
         <>p
         <Head>
-            <title>Vdhorst | proppP</title>
+            <title>Vdhorst | Portfolio </title>
             <link rel="icon" href="/favicon.ico"/>
             <meta charSet="utf-8"/>
             <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
