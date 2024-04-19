@@ -12,7 +12,7 @@ const CV = dynamic(() => import("../Components/CV"), {
 
 const Home: NextPage = () => {
     return (
-        <>p
+        <>
         <Head>
             <title>Vdhorst | Portfolio </title>
             <link rel="icon" href="/favicon.ico"/>
