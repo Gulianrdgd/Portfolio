@@ -1,4 +1,4 @@
-import {project} from "./Types/Project";
+import {project} from "./types/Project";
 
 export let projects: project[] = [
     {

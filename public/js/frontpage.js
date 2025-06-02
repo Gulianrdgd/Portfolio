@@ -1,111 +1,211 @@
-const texts = [];
+const SCROLL_OFFSET = 150;
+const ANIMATION_TRIGGER_RATIO = 0.5;
+const RESIZE_DEBOUNCE_DELAY = 300;
+const ANIMATION_SETUP_DELAY = 300;
+const MOBILE_BREAKPOINT = 768;
 
-let hide = true;
-let tl = gsap.timeline({paused: true});
+const navigationItems = [
+    { welcome: "welcome-about", nav: "nav-about" },
+    { welcome: "welcome-projects", nav: "nav-projects" },
+    { welcome: "welcome-cv", nav: "nav-cv" },
+    { welcome: "welcome-contact", nav: "nav-contact" },
+    { welcome: "welcome-logo", nav: "nav-logo" }
+];
 
-window.onload = function () {
-    const init = [{welcome: "welcome-about", nav: "nav-about"}, {welcome: "welcome-projects", nav: "nav-projects"},
-        {welcome: "welcome-cv", nav: "nav-cv"}, {welcome: "welcome-contact", nav: "nav-contact"}
-        , {welcome: "welcome-logo", nav: "nav-logo"}];
-
-    init.forEach(function (t) {
-        texts.push(t);
-    })
-
-    setTimeout(setUpAnimation, 300);
-    texts.forEach(function(t) {
-            if (t.nav !== "nav-logo") {
-                let target = document.getElementById("scroll-" + t.nav.substring(4));
-                document.getElementById(t.nav).onclick = (_) => {
-                    window.scrollTo({
-                        top: target.getBoundingClientRect().top + window.pageYOffset - 150,
-                        behavior: 'smooth'
-                    })
-                }
-                document.getElementById(t.welcome).onclick = (_) => {
-                    window.scrollTo({
-                        top: target.getBoundingClientRect().top + window.pageYOffset -150,
-                        behavior: 'smooth'
-                    })
-                }
-            }
-        }
-    )
-}
-
-function setUpAnimation(){
-    tl = gsap.timeline({paused:true});
-    texts.forEach(function (t) {
-        let nav = document.getElementById(t.nav);
-        let welcome = document.getElementById(t.welcome);
-        let relativeSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-        let scale = 0;
-        // Special scale and y for logo
-        if (t.nav === "nav-logo") {
-            // If the window is below tailwind:md we have a different scale for the logo
-            scale = window.innerWidth < 768 ? 1 / (200 / (4 * relativeSize)) : 1 / (200 / (7 * relativeSize))
-        }else{
-            scale = (1 / (2.25 / 1.5))
-        }
-        let y = window.innerHeight/2 - (welcome.offsetTop + welcome.getBoundingClientRect().height / 2) - ((t.nav === "nav-logo") ? 0 : (2.5 * relativeSize))
-
-        tl.to("#" + t.welcome,
-            {
-                x: (nav.getBoundingClientRect().left + nav.getBoundingClientRect().width / 2) - (welcome.getBoundingClientRect().left + welcome.getBoundingClientRect().width / 2),
-                y: y, duration: 1, onComplete: function(){showNavBar(t.welcome)}, scale: scale
-            }, 0
-        );
-    })
-
-
-}
-
-function showNavBar(name) {
-    document.getElementById('navbar').className = document.getElementById('navbar').className.replace("opacity-0", "opacity-100");
-    texts.forEach(function (t) {
-        if(t.welcome === name) {
-            document.getElementById(t.welcome).className = document.getElementById(t.welcome).className.replace("opacity-0", " opacity-100");
-            document.getElementById(t.nav).className = document.getElementById(t.nav).className.replace("opacity-0", " opacity-100");
-        }
-    })
-
-    hide = false;
-}
+let isNavbarHidden = true;
+let animationTimeline = gsap.timeline({ paused: true });
 let resizeTimer = null;
-function resizeDone(){
-    tl.progress(0);
-    tl.kill();
-    tl.clear();
-    setUpAnimation();
-    resizeTimer = null;
-}
+let cachedElements = {};
 
-window.onresize = function(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(resizeDone, 300);
+window.onload = function() {
+    cacheElements();
+    setTimeout(setupAnimation, ANIMATION_SETUP_DELAY);
+    setupClickHandlers();
 };
 
-window.onscroll = function(){
-    let scrollTop = window.scrollY;
-    let winHeight = window.innerHeight;
+function cacheElements() {
+    cachedElements.navbar = document.getElementById('navbar');
 
-    if( scrollTop >= 0 && resizeTimer === null){
+    navigationItems.forEach(function(item) {
+        cachedElements[item.nav] = document.getElementById(item.nav);
+        cachedElements[item.welcome] = document.getElementById(item.welcome);
 
-        tl.progress( scrollTop / ( winHeight* 0.5 ) );
-
-        if(scrollTop <= winHeight*0.5 && !hide){
-            texts.forEach(function (t) {
-                document.getElementById(t.nav).className = document.getElementById(t.nav).className.replace("opacity-0", " opacity-100");
-                document.getElementById(t.welcome).className = document.getElementById(t.welcome).className.replace("opacity-0", " opacity-100");
-                document.getElementById('navbar').className = document.getElementById('navbar').className.replace(" opacity-100", " opacity-0");
-            })
-            hide = true;
+        if (item.nav !== "nav-logo") {
+            const targetId = "scroll-" + item.nav.substring(4);
+            cachedElements[targetId] = document.getElementById(targetId);
         }
-    }
-
+    });
 }
 
+function setupClickHandlers() {
+    navigationItems.forEach(function(item) {
+        if (item.nav !== "nav-logo") {
+            const targetElement = cachedElements["scroll-" + item.nav.substring(4)];
 
+            if (!targetElement) {
+                console.warn(`Target element not found for: ${item.nav}`);
+                return;
+            }
 
+            const navElement = cachedElements[item.nav];
+            const welcomeElement = cachedElements[item.welcome];
 
+            if (navElement && welcomeElement) {
+                navElement.addEventListener('click', function() {
+                    scrollToTarget(targetElement);
+                });
+
+                welcomeElement.addEventListener('click', function() {
+                    scrollToTarget(targetElement);
+                });
+            }
+        }
+    });
+}
+
+function scrollToTarget(targetElement) {
+    if (!targetElement) return;
+
+    window.scrollTo({
+        top: targetElement.getBoundingClientRect().top + window.pageYOffset - SCROLL_OFFSET,
+        behavior: 'smooth'
+    });
+}
+
+function setupAnimation() {
+    if (animationTimeline) {
+        animationTimeline.progress(0);
+        animationTimeline.kill();
+        animationTimeline.clear();
+    }
+
+    animationTimeline = gsap.timeline({ paused: true });
+
+    navigationItems.forEach(function(item) {
+        const navElement = cachedElements[item.nav];
+        const welcomeElement = cachedElements[item.welcome];
+
+        if (!navElement || !welcomeElement) {
+            console.warn(`Elements not found for: ${item.nav} or ${item.welcome}`);
+            return;
+        }
+
+        const relativeSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+        const scale = calculateScale(item.nav, relativeSize);
+        const yOffset = calculateYOffset(welcomeElement, navElement, item.nav, relativeSize);
+        const xOffset = calculateXOffset(navElement, welcomeElement);
+
+        animationTimeline.to("#" + item.welcome, {
+            x: xOffset,
+            y: yOffset,
+            scale: scale,
+            duration: 1,
+            onComplete: function() {
+                showNavbar(item.welcome);
+            }
+        }, 0);
+    });
+}
+
+function calculateScale(navId, relativeSize) {
+    if (navId === "nav-logo") {
+        return window.innerWidth < MOBILE_BREAKPOINT
+            ? 1 / (200 / (4 * relativeSize))
+            : 1 / (200 / (7 * relativeSize));
+    }
+    return 1 / (2.25 / 1.5);
+}
+
+function calculateYOffset(welcomeElement, navElement, navId, relativeSize) {
+    const welcomeRect = welcomeElement.getBoundingClientRect();
+    const welcomeCenter = welcomeElement.offsetTop + welcomeRect.height / 2;
+    const viewportCenter = window.innerHeight / 2;
+    const additionalOffset = navId === "nav-logo" ? 0 : (2.5 * relativeSize);
+
+    return viewportCenter - welcomeCenter - additionalOffset;
+}
+
+function calculateXOffset(navElement, welcomeElement) {
+    const navRect = navElement.getBoundingClientRect();
+    const welcomeRect = welcomeElement.getBoundingClientRect();
+    const navCenter = navRect.left + navRect.width / 2;
+    const welcomeCenter = welcomeRect.left + welcomeRect.width / 2;
+
+    return navCenter - welcomeCenter;
+}
+
+function showNavbar(welcomeElementId) {
+    if (!cachedElements.navbar) return;
+
+    toggleOpacity(cachedElements.navbar, true);
+
+    navigationItems.forEach(function(item) {
+        if (item.welcome === welcomeElementId) {
+            const welcomeElement = cachedElements[item.welcome];
+            const navElement = cachedElements[item.nav];
+
+            if (welcomeElement && navElement) {
+                toggleOpacity(welcomeElement, true);
+                toggleOpacity(navElement, true);
+            }
+        }
+    });
+
+    isNavbarHidden = false;
+}
+
+function toggleOpacity(element, show) {
+    if (!element) return;
+
+    if (show) {
+        element.className = element.className.replace("opacity-0", "opacity-100");
+    } else {
+        element.className = element.className.replace("opacity-100", "opacity-0");
+    }
+}
+
+function handleResize() {
+    if (resizeTimer) {
+        clearTimeout(resizeTimer);
+    }
+
+    resizeTimer = setTimeout(function() {
+        setupAnimation();
+        resizeTimer = null;
+    }, RESIZE_DEBOUNCE_DELAY);
+}
+
+function handleScroll() {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const triggerPoint = windowHeight * ANIMATION_TRIGGER_RATIO;
+
+    if (scrollTop >= 0 && resizeTimer === null) {
+        const progress = Math.min(scrollTop / triggerPoint, 1);
+        animationTimeline.progress(progress);
+
+        if (scrollTop <= triggerPoint && !isNavbarHidden) {
+            hideAllElements();
+            isNavbarHidden = true;
+        }
+    }
+}
+
+function hideAllElements() {
+    if (cachedElements.navbar) {
+        toggleOpacity(cachedElements.navbar, false);
+    }
+
+    navigationItems.forEach(function(item) {
+        const welcomeElement = cachedElements[item.welcome];
+        const navElement = cachedElements[item.nav];
+
+        if (welcomeElement && navElement) {
+            toggleOpacity(welcomeElement, true);
+            toggleOpacity(navElement, true);
+        }
+    });
+}
+
+window.onresize = handleResize;
+window.onscroll = handleScroll;

@@ -1,18 +1,39 @@
-@tailwind base;
+@import 'tailwindcss';
 
-@tailwind components;
+@theme {
+  /* Spacing */
+  --spacing-128: 32rem;
+  --spacing-144: 36rem;
 
-@tailwind utilities;
+  /* Margins */
+  --margin-014: 14%;
+  --margin-025: 25%;
 
-@tailwind *;
+  /* Width */
+  --width-6-10: 60%;
 
+  /* Border radius */
+  --radius-4xl: 2rem;
+
+  /* Colors */
+  --color-primary: #0085FF;
+  --color-primary-active: #0066CC;
+
+  /* Z-index */
+  --z-index-1: -1;
+
+  /* Font families */
+  --font-family-sans: "Chakra Petch", sans-serif;
+  --font-family-light: "Chakra Petch Light";
+  --font-family-medium: "Chakra Petch Medium";
+  --font-family-semiBold: "Chakra Petch SemiBold";
+}
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: var(--font-family-sans), serif;
 }
 
 a {
