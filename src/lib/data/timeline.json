@@ -1,32 +1,32 @@
 [
-  {
-    "id": 1,
-    "type": "education",
-    "title": "Bachelor's Degree in Computer Science",
-    "organization": "University Name",
-    "date": "2020 - 2024",
-    "description": "Completed my Bachelor's degree with focus on software engineering and web technologies. Great experience learning the fundamentals.",
-    "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=800&fit=crop",
-    "tags": ["Computer Science", "Software Engineering", "Graduation"]
-  },
-  {
-    "id": 2,
-    "type": "project",
-    "title": "E-Commerce Platform",
-    "organization": "Personal Project",
-    "date": "2023",
-    "description": "Built a full-stack e-commerce platform with React and Node.js. Implemented payment processing, user authentication, and product management.",
-    "image": "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=800&fit=crop",
-    "tags": ["React", "TypeScript", "Node.js"]
-  },
-  {
-    "id": 3,
-    "type": "work",
-    "title": "Software Engineer",
-    "organization": "Tech Company",
-    "date": "2024 - Present",
-    "description": "Working on cutting-edge web applications, collaborating with amazing teams, and solving complex problems every day.",
-    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=800&fit=crop",
-    "tags": ["Full Stack", "Web Development", "Team Lead"]
-  }
+	{
+		"id": 1,
+		"type": "education",
+		"title": "Bachelor's Degree in Computer Science",
+		"organization": "University Name",
+		"date": "2020 - 2024",
+		"description": "Completed my Bachelor's degree with focus on software engineering and web technologies. Great experience learning the fundamentals.",
+		"image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=800&fit=crop",
+		"tags": ["Computer Science", "Software Engineering", "Graduation"]
+	},
+	{
+		"id": 2,
+		"type": "project",
+		"title": "E-Commerce Platform",
+		"organization": "Personal Project",
+		"date": "2023",
+		"description": "Built a full-stack e-commerce platform with React and Node.js. Implemented payment processing, user authentication, and product management.",
+		"image": "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=800&fit=crop",
+		"tags": ["React", "TypeScript", "Node.js"]
+	},
+	{
+		"id": 3,
+		"type": "work",
+		"title": "Software Engineer",
+		"organization": "Tech Company",
+		"date": "2024 - Present",
+		"description": "Working on cutting-edge web applications, collaborating with amazing teams, and solving complex problems every day.",
+		"image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=800&fit=crop",
+		"tags": ["Full Stack", "Web Development", "Team Lead"]
+	}
 ]
