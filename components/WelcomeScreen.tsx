@@ -8,7 +8,7 @@ function WelcomeScreen() {
                      src="/images/julian.jpg" alt="Picture of Julian van der Horst"/>
             </div>
 
-            <div className="bg-black z-10 welcomeDiv h-screen w-screen sm:w-6/10 absolute">
+            <div className="bg-black z-0 welcomeDiv h-screen w-screen sm:w-6/10 absolute">
             </div>
 
             <div className="h-full w-screen absolute flex justify-center z-50">
