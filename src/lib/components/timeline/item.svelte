@@ -1,50 +1,33 @@
 <script lang="ts">
     import {Skeleton} from '$lib/components/ui/skeleton';
-    import {Heart} from '@lucide/svelte';
+    import {Heart, MessageCircle, Share2} from '@lucide/svelte';
     import {CardContent, CardHeader, Root as CardRoot} from "$lib/components/ui/card";
-    import {AvatarFallback, Root as AvatarRoot} from "$lib/components/ui/avatar";
     import type {TimelineItem} from "$lib/types/timeline";
+    import ImageCarrousel from "$lib/components/timeline/imageCarrousel.svelte";
 
     let {item, loading}: { item: TimelineItem; loading: boolean } = $props();
 
 </script>
 
-<CardRoot class="overflow-hidden border-border bg-card">
-    <!-- Instagram-style Header -->
-    <CardHeader class="pb-3">
-        <div class="flex items-center gap-3">
-            <AvatarRoot class="h-10 w-10">
-                <AvatarFallback class="font-bold text-white text-xs">
-                    {item.title.charAt(0)}
-                </AvatarFallback>
-            </AvatarRoot>
-            <div class="flex-1">
-                <p class="text-xs text-muted-foreground">{item.date}</p>
-            </div>
-        </div>
-    </CardHeader>
 
-    <!-- Image Section -->
-    <div class="w-full aspect-square relative bg-muted">
-        <img
-                alt={item.title}
-                class="w-full h-full object-cover"
-                src={item.image}
-        />
-    </div>
+<span class="text-center text-2xl font-bold text-gray-400 w-full">
+    {item.date}
+</span>
+
+<CardRoot class="overflow-hidden border-border bg-card pt-0">
+    <ImageCarrousel image_filenames={item.image}/>
 
     <!-- Content Section -->
-    <CardContent class="pt-4 pb-3 space-y-3">
-        <div class="flex gap-4">
-            <Heart/>
-        </div>
+    <CardContent class="pt-0 space-y-3">
 
         <!-- Description -->
         <div>
             <p class="text-sm text-foreground">
-                <span class="font-semibold">{item.title}</span>
+                <span class="font-semibold text-2xl">{item.title}</span>
             </p>
             <p class="text-sm text-foreground mt-1">{item.description}</p>
+            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+            <a class="text-sm text-accent mt-2" href={item.link}>{item.link}</a>
         </div>
 
         <!-- Tags as hashtags -->
@@ -52,6 +35,12 @@
             {#each item.tags as tag (tag)}
                 <span class="text-sm text-primary hover:underline cursor-pointer">#{tag.replace(/\s+/g, '')}</span>
             {/each}
+        </div>
+
+        <div class="flex gap-4">
+            <Heart/>
+            <MessageCircle/>
+            <Share2/>
         </div>
     </CardContent>
 </CardRoot>

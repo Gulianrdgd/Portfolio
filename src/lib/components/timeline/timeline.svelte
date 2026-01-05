@@ -4,35 +4,45 @@
     import gsap from 'gsap';
     import {ScrollTrigger} from 'gsap/ScrollTrigger';
 
-    // Register ScrollTrigger plugin
     if (typeof window !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
     }
 
     let items = $state<TimelineItem[]>([
         {
-            date: 'June 2024',
-            title: 'Launched New Portfolio Website',
-            description: 'Revamped my personal portfolio website to showcase my latest projects and skills.',
+            date: 'August 2018',
+            title: 'Studied Computer Science (BSc) and Cyber security (MSc) at the Radboud University',
+            description: '',
             type: 'project',
-            image: '/images/portfolio-launch.png',
+            image: ['/images/university1.jpg', '/images/university2.jpeg', '/images/university3.jpg'],
             tags: ['Web Development', 'Portfolio', 'Design']
         },
         {
-            date: 'May 2024',
-            title: 'Completed SvelteKit Course',
-            description: 'Finished an in-depth course on SvelteKit to enhance my frontend development skills.',
+            date: 'March 2020',
+            title: 'Started learning web development during covid lockdown',
+            description: 'My study association was now fully online, so I created online "experiences" for my fellow students.',
+            link: 'https://github.com/Gulianrdgd',
             type: 'education',
-            image: '/images/sveltekit-course.png',
-            tags: ['SvelteKit', 'Frontend', 'Learning']
+            image: ['/images/project1.png', '/images/project2.png'],
+            tags: ['DrinkingGames', 'Livestreams', 'Web Development']
         },
         {
-            date: 'April 2024',
-            title: 'Started Open Source Project',
-            description: 'Initiated an open source project focused on building reusable UI components.',
+            date: 'Juli 2024',
+            title: 'Walked the 4 day march in Nijmegen',
+            description: 'I also created a website to see who of your favorite spotify artists were performing in Nijmegen during the march (invite only)',
+            link: 'https://vierdaagse.vdhorst.dev/',
             type: 'project',
-            image: '/images/open-source.png',
-            tags: ['Open Source', 'UI Components', 'Collaboration']
+            image: ['/images/4day1.jpg', '/images/4day2.png'],
+            tags: ['Vierdaagse', 'Nijmegen', 'Spotify']
+        },
+        {
+            date: 'December 2024',
+            title: 'I now work at NOLAI at the Radboud University as a full stack developer',
+            description: 'I am part of the tech team that helps with our AI projects and builds/maintains our services',
+            link: 'https://www.ru.nl/over-ons/nieuws/whitepaper-veilig-experimenteren-met-taalmodellen',
+            type: 'work',
+            image: ['/images/nolai1.jpeg', '/images/nolai2.png', "/images/nolai3.png"],
+            tags: ['NOLAI', 'Tech team', 'Nijmegen']
         }
     ]);
 

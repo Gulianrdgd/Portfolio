@@ -3,7 +3,8 @@ interface TimelineItem {
 	title: string;
 	date: string;
 	description: string;
-	image: string;
+	link?: string;
+	image: string[];
 	tags: string[];
 }
 
