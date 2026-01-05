@@ -16,11 +16,7 @@
 
 <CardRoot class="overflow-hidden border-border bg-card pt-0">
     <ImageCarrousel image_filenames={item.image}/>
-
-    <!-- Content Section -->
     <CardContent class="pt-0 space-y-3">
-
-        <!-- Description -->
         <div>
             <p class="text-sm text-foreground">
                 <span class="font-semibold text-2xl">{item.title}</span>
@@ -30,7 +26,6 @@
             <a class="text-sm text-accent mt-2" href={item.link}>{item.link}</a>
         </div>
 
-        <!-- Tags as hashtags -->
         <div class="flex flex-wrap gap-2">
             {#each item.tags as tag (tag)}
                 <span class="text-sm text-primary hover:underline cursor-pointer">#{tag.replace(/\s+/g, '')}</span>
@@ -38,7 +33,7 @@
         </div>
 
         <div class="flex gap-4">
-            <Heart/>
+            <Heart class="scale-100 hover:scale-150 accent-red-600"/>
             <MessageCircle/>
             <Share2/>
         </div>

@@ -47,39 +47,85 @@
     ]);
 
     let containerRef: HTMLDivElement;
+    let timelineContainer: HTMLDivElement;
 
     $effect(() => {
-        if (!containerRef) return;
+        if (!containerRef || !timelineContainer) return;
 
-        const scrollContainer = containerRef.querySelector('.timeline-container');
         const itemElements = containerRef.querySelectorAll('.timeline-item');
+        if (itemElements.length === 0) return;
 
-        if (!scrollContainer) return;
+        // Kill any existing ScrollTriggers first
+        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 
-        itemElements.forEach((item) => {
-            // Animate each item on scroll
-            gsap.fromTo(
-                item,
-                {
-                    opacity: 0,
-                    y: 50,
-                    scale: 0.95
-                },
-                {
+        // Set all items to hidden initially except first
+        itemElements.forEach((item, index) => {
+            if (index === 0) {
+                gsap.set(item, { opacity: 1, y: 0, scale: 1, pointerEvents: 'auto', zIndex: 1 });
+            } else {
+                gsap.set(item, { opacity: 0, y: 100, scale: 0.9, pointerEvents: 'none', zIndex: 0 });
+            }
+        });
+
+        // Create master timeline
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: containerRef,
+                start: 'top top',
+                end: () => `+=${window.innerHeight * items.length * 2}`,
+                scrub: 1,
+                pin: true,
+                anticipatePin: 1,
+            }
+        });
+
+        // Build the timeline
+        itemElements.forEach((item, index) => {
+            if (index === 0) {
+                // First item visible, then fades out
+                tl.to(item, {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: item,
-                        scroller: scrollContainer,
-                        start: 'top center',
-                        end: 'center center',
-                        scrub: 0.5,
-                        toggleActions: 'play none none reverse'
-                    }
+                    pointerEvents: 'auto',
+                    zIndex: 1,
+                    duration: 1
+                });
+
+                tl.to(item, {
+                    opacity: 0,
+                    y: -100,
+                    scale: 0.9,
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                    duration: 1
+                });
+            } else {
+                // Subsequent items fade in from bottom
+                tl.to(item, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    pointerEvents: 'auto',
+                    zIndex: 1,
+                    duration: 1
+                }, '<'); // Start at same time as previous fadeout
+
+                // Hold visible for a moment
+                tl.to({}, { duration: 1 });
+
+                // Fade out unless it's the last item
+                if (index < items.length - 1) {
+                    tl.to(item, {
+                        opacity: 0,
+                        y: -100,
+                        scale: 0.9,
+                        pointerEvents: 'none',
+                        zIndex: 0,
+                        duration: 1
+                    });
                 }
-            );
+            }
         });
 
         // Cleanup function
@@ -89,10 +135,10 @@
     });
 </script>
 
-<div bind:this={containerRef} class="min-h-screen">
-    <div class="h-screen overflow-y-scroll snap-y snap-mandatory snap-always">
+<div bind:this={containerRef} id="timeline" class="relative h-screen overflow-hidden">
+    <div bind:this={timelineContainer} class="absolute inset-0 flex items-center justify-center">
         {#each items as item (item.date)}
-            <div class="h-screen flex items-center justify-center snap-start snap-always">
+            <div class="timeline-item absolute inset-0 flex items-center justify-center">
                 <div class="max-w-2xl mx-auto px-4 w-full">
                     <Item {item} loading={false}/>
                 </div>
