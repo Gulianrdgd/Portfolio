@@ -1,3 +1,25 @@
-# allow crawling everything by default
+# Block LLM/AI crawlers from images only
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: CCBot
+User-agent: anthropic-ai
+User-agent: Claude-Web
+User-agent: Google-Extended
+User-agent: Omgilibot
+User-agent: FacebookBot
+User-agent: Diffbot
+User-agent: Bytespider
+User-agent: PerplexityBot
+User-agent: Applebot-Extended
+User-agent: cohere-ai
+User-agent: ClaudeBot
+User-agent: Omgili
+User-agent: YouBot
+User-agent: Timpibot
+User-agent: VelenPublicWebCrawler
+User-agent: Amazonbot
+Disallow: /images/
+
+# Allow search engines and other crawlers
 User-agent: *
 Disallow:

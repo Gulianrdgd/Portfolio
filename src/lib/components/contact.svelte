@@ -1,13 +1,15 @@
 <script lang="ts">
-	import {CardContent, CardDescription, CardHeader, CardTitle, Root as CardRoot} from "$lib/components/ui/card";
-	import {Button} from "$lib/components/ui/button";
-	import {Github, GraduationCap, Linkedin} from '@lucide/svelte';
+    import {CardContent, CardDescription, CardHeader, CardTitle, Root as CardRoot} from "$lib/components/ui/card";
+    import {Button} from "$lib/components/ui/button";
+    import {Github, GraduationCap, Linkedin} from '@lucide/svelte';
+    import logo from '$lib/assets/logo.png';
 </script>
 
-<section id="contact" class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20">
+<section class="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-20" id="contact">
     <div class="relative z-10 mx-auto w-full max-w-2xl">
         <CardRoot class="overflow-hidden border-border bg-card">
             <CardHeader class="text-center">
+                <img alt="Logo" class="mx-auto mb-4 h-32 w-32 rounded-full" src={logo}/>
                 <CardTitle class="text-4xl font-bold">Let's Connect</CardTitle>
                 <CardDescription class="text-lg">
                     Feel free to reach out on any of these platforms
