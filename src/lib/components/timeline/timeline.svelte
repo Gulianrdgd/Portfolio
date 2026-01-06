@@ -32,7 +32,7 @@
             description: 'I also created a website to see who of your favorite spotify artists were performing in Nijmegen during the march (invite only)',
             link: 'https://vierdaagse.vdhorst.dev/',
             type: 'project',
-            image: ['/images/sport1.jpg', '/images/sport2.png', '/images/sport3.png'],
+            image: ['/images/sport1.jpg', '/images/sport2.jpg', '/images/sport3.png'],
             tags: ['Rugby', 'Vierdaagse', 'Spotify']
         },
         {
