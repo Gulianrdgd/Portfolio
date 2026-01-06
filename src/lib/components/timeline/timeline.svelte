@@ -18,7 +18,7 @@
             tags: ['Web Development', 'Portfolio', 'Design']
         },
         {
-            date: 'March 2020',
+            date: 'October 2021',
             title: 'Started learning web development during covid lockdown',
             description: 'My study association was now fully online, so I created online "experiences" for my fellow students.',
             link: 'https://github.com/Gulianrdgd',
@@ -28,21 +28,29 @@
         },
         {
             date: 'Juli 2024',
-            title: 'Walked the 4 day march in Nijmegen',
+            title: 'Like to be active, I play rugby, snowboard and work out. I even walked the 4 day march in Nijmegen',
             description: 'I also created a website to see who of your favorite spotify artists were performing in Nijmegen during the march (invite only)',
             link: 'https://vierdaagse.vdhorst.dev/',
             type: 'project',
-            image: ['/images/4day1.jpg', '/images/4day2.png'],
-            tags: ['Vierdaagse', 'Nijmegen', 'Spotify']
+            image: ['/images/sport1.jpeg', '/images/sport2.png', '/images/sport3.png'],
+            tags: ['Rugby', 'Vierdaagse', 'Spotify']
         },
         {
             date: 'December 2024',
-            title: 'I now work at NOLAI at the Radboud University as a full stack developer',
+            title: 'Currently works at NOLAI at the Radboud University as a full stack developer',
             description: 'I am part of the tech team that helps with our AI projects and builds/maintains our services',
             link: 'https://www.ru.nl/over-ons/nieuws/whitepaper-veilig-experimenteren-met-taalmodellen',
             type: 'work',
             image: ['/images/nolai1.jpeg', '/images/nolai2.png', "/images/nolai3.png"],
             tags: ['NOLAI', 'Tech team', 'Nijmegen']
+        },
+        {
+            date: 'January 2026',
+            title: 'A maker, I like to fix and build things',
+            description: 'I have repaired tvs, vacuums, bikes and more. I also like to build things from scratch like furniture or 3d prints',
+            type: 'project',
+            image: ['/images/personal1.jpeg', '/images/personal2.jpeg', "/images/personal3.jpeg", "/images/personal4.jpeg"],
+            tags: ['Maker', 'Repair', '3d-printing']
         }
     ]);
 
@@ -61,9 +69,9 @@
         // Set all items to hidden initially except first
         itemElements.forEach((item, index) => {
             if (index === 0) {
-                gsap.set(item, { opacity: 1, y: 0, scale: 1, pointerEvents: 'auto', zIndex: 1 });
+                gsap.set(item, {opacity: 1, y: 0, scale: 1, pointerEvents: 'auto', zIndex: 1});
             } else {
-                gsap.set(item, { opacity: 0, y: 100, scale: 0.9, pointerEvents: 'none', zIndex: 0 });
+                gsap.set(item, {opacity: 0, y: 100, scale: 0.9, pointerEvents: 'none', zIndex: 0});
             }
         });
 
@@ -112,7 +120,7 @@
                 }, '<'); // Start at same time as previous fadeout
 
                 // Hold visible for a moment
-                tl.to({}, { duration: 1 });
+                tl.to({}, {duration: 1});
 
                 // Fade out unless it's the last item
                 if (index < items.length - 1) {
@@ -135,7 +143,7 @@
     });
 </script>
 
-<div bind:this={containerRef} id="timeline" class="relative h-screen overflow-hidden">
+<div bind:this={containerRef} class="relative h-screen overflow-hidden" id="timeline">
     <div bind:this={timelineContainer} class="absolute inset-0 flex items-center justify-center">
         {#each items as item (item.date)}
             <div class="timeline-item absolute inset-0 flex items-center justify-center">
